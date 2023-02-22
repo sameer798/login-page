@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    header{
+      background-color: green;
+      color: white;
+      height: 15vh;
+      text-align: center;
+    }
+    .container{
+      display: inline-block;
+      background-color: gray;
+      width: 50vw;
+      height: 30vh;
+      margin: 10px 0px;
+      padding: 5px;
+      border: 2px solid black;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>JavaScript for begginer</h1>
+  </header>
+  <section class="container">
+    <form id="my-form">
+      <h1>Add User</h1>
+      <div class="msg"></div>
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name">
+      </div>
+      <div>
+        <label for="email">email</label>
+        <input type="text" id="email">
+      </div>
+      <input type="submit" class="btn" value="Submit">
+    </form>
+
+    <ul id="users"></ul>
+    <ul class="items">
+      <!-- <li class="item">Item 1</li>
+      <li class="item">Item 2</li>
+      <li class="item">Item 3</li> -->
+    </ul>
+  </section>
+  <script>
+    const myForm = document.querySelector('#my-form');
+    const nameInput = document.querySelector('#name');
+    const emailInput = document.querySelector('#email');
+    const msg = document.querySelector('.msg');
+    const userList = document.querySelector('#users');
+
+    myForm.addEventListener('submit', onSubmit);
+    function onSubmit(e){
+      e.preventDefault();
+      if(nameInput.value === '' || emailInput.value === ''){
+        msg.style.color = 'red';
+        msg.innerHTML = 'Please a fields';
+        setTimeout(()=> msg.remove(), 3000);
+      }else{
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`));
+        userList.appendChild(li);
+        //clear fields
+        nameInput.value = '';
+        emailInput.value = '';
+    }
+  }
+  </script>
+</body>
+</html>
